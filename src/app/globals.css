@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-input-bg: var(--input-bg);
+  --color-input-border: var(--input-border);
+  --color-dropdown-bg: var(--dropdown-bg);
+  --color-dropdown-border: var(--dropdown-border);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-dorsen-cyan: #08c2e5;
+  --color-dorsen-cyan-light: #22d3ee;
+  --color-dorsen-navy: #0b2342;
+  --color-dorsen-blue: #1e40af;
+  --color-section-dark: var(--section-dark);
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --background: #f5fafd;
+  --foreground: #0b2342;
+  --card: #ffffff;
+  --card-foreground: #0b2342;
+  --muted: #64748b;
+  --border: #d7e3ef;
+  --primary: rgb(44, 135, 191);
+  --primary-light: rgb(64, 155, 211);
+  --input-bg: #f7fafc;
+  --input-border: #d7e3ef;
+  --dropdown-bg: #ffffff;
+  --dropdown-border: #d7e3ef;
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --section-dark: #071223;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #050d18;
+  --foreground: #ffffff;
+  --card: #0a1930;
+  --card-foreground: #ffffff;
+  --muted: #9fb0c5;
+  --border: #1d344d;
+  --primary: rgb(44, 135, 191);
+  --primary-light: rgb(64, 155, 211);
+  --input-bg: #0d2038;
+  --input-border: #23435f;
+  --dropdown-bg: #0d2038;
+  --dropdown-border: #23435f;
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --section-dark: #071223;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+::selection {
+  background: var(--primary);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(8, 194, 229, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(8, 194, 229, 0.5);
+}
+
+/* Gradient text: primary -> dorsen cyan */
+.text-gradient {
+  background: linear-gradient(92deg, rgb(44, 135, 191) 10%, #08c2e5 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Theme-aware card */
+.card-light {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px -18px rgba(11, 35, 66, 0.18);
+}
+
+.dark .card-light {
+  box-shadow: 0 20px 60px -30px rgba(8, 194, 229, 0.35);
+}
+
+.glow-blue {
+  box-shadow: 0 0 90px -25px rgba(44, 135, 191, 0.55);
+}
+
+/* Glass navbar */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.dark .glass {
+  background: rgba(7, 18, 35, 0.85);
+  border-bottom: 1px solid rgba(80, 150, 200, 0.15);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Geometric Chamfered Button */
+.clip-chamfer {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
+
+.clip-chamfer-sm {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.clip-chamfer-lg {
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-floaty {
+  animation: floaty 5s ease-in-out infinite;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Dorsen logo / Secure word gradient */
+.logo-gradient {
+  background: linear-gradient(20deg, rgb(28, 102, 166) 10%, rgb(230, 250, 236) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
